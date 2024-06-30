@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrocaLivros - Livros disponíveis</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/css">
+</head>
+<body class="bg-white">
+    <div> 
+        <%- include ('Headers/headerPrivate.ejs') %>
+    </div>
+    <div class="container-fluid mb-3">
+        <div class="row mt-5">
+            <div class="col-12">
+                <h1 class="text-center fw-bold mt-5 mb-5 text-primary">Livros disponíveis</h1>
+            </div>
+            <div class="col-2"></div>
+            <div class="col-8">
+                <div class="border border-primary border-4 shadow shadow-lg rounded p-2 m-0">
+                    <table class="table table-bordered table-striped shadow shadow-lg m-0">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th class="bg-primary text-white">ID</th>
+                                <th class="bg-primary text-white">Título</th>
+                                <th class="bg-primary text-white">Autor</th>
+                                <th class="bg-primary text-white">Condição</th>
+                                <th class="bg-primary text-white">Descrição</th>
+                                <th class="bg-primary text-white">Situação</th>
+                                <th class="bg-primary text-white">Dono do livro</th>
+                                <th class="bg-primary text-white">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% objLivros.forEach(livro => { %>
+                                <tr>
+                                    <form action="/proporLivro" method="post">
+                                        <td class="bg-primary text-white fw-bold"><%= livro.id %></td>
+                                        <td class="bg-light fw-semibold"><%= livro.title %></td>
+                                        <td class="bg-light fw-semibold"><%= livro.author %></td>
+                                        <td class="bg-light fw-semibold"><%= livro.currentCondition %></td>
+                                        <td class="bg-light fw-semibold"><%= livro.description %></td>
+                                        <td class="bg-light fw-semibold"><%= livro.situation ? 'Disponível' : 'Indisponível' %></td>
+                                        <td class="bg-light fw-semibold"><%= livro.ownerName %></td>
+                                        <td class="bg-light fw-semibold">
+                                            <input type="hidden" name="fk_book_idBook" value="<%= livro.id %>">
+                                            <% if (livro.situation) { %>
+                                                <button type="submit" class="btn btn-success text-white px-1 py-0 shadow shadow-sm">Proposta</button>
+                                            <% } else { %>
+                                                <button type="button" class="btn btn-danger text-white px-1 py-0 shadow shadow-sm" disabled>Indisponível</button>
+                                            <% } %>
+                                        </td>
+                                    </form>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+</body>
+</html>

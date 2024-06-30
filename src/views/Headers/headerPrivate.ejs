@@ -1,0 +1,28 @@
+<!-- headerPrivate.ejs -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white px-3 fixed-top border-bottom border-secondary border-4">
+    <a class="navbar-brand text-primary fw-bold" href="/home">TrocaLivros</a>
+    <div class="navbar-collapse">
+        <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+                <a class="nav-link text-dark fw-semibold" href="/home">Início</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark fw-semibold" href="/livros">Livros</a>
+            </li>
+            <li clas    s="nav-item">
+                <a class="nav-link text-dark fw-semibold" href="/meusLivros">Meus livros</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark fw-semibold" href="/minhasPropostas">Minhas Propostas</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <% if (typeof emailClient !== 'undefined' && emailClient !== null) { %>
+                    <span class="nav-link text-dark fw-semibold me-2">Bem-vindo, <%= emailClient %></span>
+                <% } %>
+                <a class="bg-danger rounded nav-link text-white fw-semibold" href="/logout">Sair</a>
+            </li>
+        </ul>
+    </div>
+</nav>
